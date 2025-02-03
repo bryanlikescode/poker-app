@@ -2,9 +2,11 @@
 // src/App.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
 
 function App() {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('hello');
 
   useEffect(() => {
     axios.get('http://localhost:8080/')
@@ -17,9 +19,15 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>{message}</h1>
-    </div>
+    <Router>
+      <Routes>
+        {/* Make login the default route */}
+        <Route path="/" element={<LoginPage />} />
+        
+        {/* Add other routes here later */}
+        {/* <Route path="/game" element={<GamePage />} /> */}
+      </Routes>
+    </Router>
   );
 }
 
